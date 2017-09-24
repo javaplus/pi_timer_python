@@ -36,4 +36,4 @@ if __name__ == '__main__':
     ch.setFormatter(formatter)
     pitimer.addHandler(ch)
     #logging.basicConfig(stream=sys.stdout)
-    app.run()
+    app.run(host='0.0.0.0')
