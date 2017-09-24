@@ -2,6 +2,7 @@ from threading import Thread
 import sys
 import logging
 import time
+import display_7segment as display
 
 running_thread = None
 
@@ -29,6 +30,10 @@ def sleeper(minutes):
     while ((sec > 0) and getattr(running_thread, "do_run", True)):
         time.sleep(1)
         sec = sec - 1
-        timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
+        mins = int(sec/60)
+        secs = sec % 60
+        #timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
+        timeStr = '{:02d}{:02d}'.format(mins, secs)
         logging.info(timeStr)
         #Write out to display
+        display.writeToDisplay(timeStr)
