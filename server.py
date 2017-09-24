@@ -1,8 +1,8 @@
 from flask import Flask, url_for, request, json
 import logging
 import sys
-from timer import countDown as countDown
-
+import timer
+#from timer import stopCountDown
 
 logging.basicConfig(level=logging.DEBUG)
 app = Flask(__name__)
@@ -11,13 +11,18 @@ app = Flask(__name__)
 def api_pitimer():
     return 'Hello World'
 
+@app.route('/stop')
+def api_stop():
+    timer.stopCountDown()
+    return 'stopping'
+
 @app.route('/timer', methods = ['POST'])
 def api_timer():
     logging.basicConfig(level=logging.DEBUG)
     logging.info('HEllo')
     logging.info('Data=' + request.data)
     logging.info(request.json["minutes"])
-    countDown(int(request.json["minutes"])) 
+    timer.countDown(int(request.json["minutes"])) 
 
 
     return 'List of articles'
