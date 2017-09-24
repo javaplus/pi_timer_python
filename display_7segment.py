@@ -10,7 +10,7 @@ segment.begin()
 def writeToDisplay(value):
     global segment
     global colonBool
-    print "Writing to display:" + value
+    #print "Writing to display:" + value
     segment.print_number_str(value)
     segment.set_colon(colonBool)
     segment.write_display()
