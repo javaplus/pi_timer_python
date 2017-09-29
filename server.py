@@ -29,9 +29,13 @@ def api_timer():
 
 if __name__ == '__main__':
     pitimer = logging.getLogger("flask.app")
-    pitimer.setLevel(logging.DEBUG)
+    pitimer.setLevel(logging.WARN)
+    adaLogger = logging.getLogger("Adafruit_I2C")
+    adaLogger.setLevel(logging.WARN)
+
+
     ch = logging.StreamHandler(sys.stdout)
-    ch.setLevel(logging.DEBUG)
+    ch.setLevel(logging.WARN)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
     ch.setFormatter(formatter)
     pitimer.addHandler(ch)
