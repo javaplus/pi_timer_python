@@ -20,6 +20,7 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     jsonRequest = json.loads(msg.payload)
     minutes = jsonRequest['minutes']
+    timer.stopCountDown()
     timer.countDown(int(minutes))
 
 
