@@ -32,7 +32,7 @@ def timeKeeper(minutes):
     endTimeInSeconds = startTimeInSeconds + sec
     global is7SegmentDisplayAvailable
 
-    while ((sec > 0) and getattr(running_thread, "do_run", True)):
+    while ((sec > 1) and getattr(running_thread, "do_run", True)):
         
         sec = endTimeInSeconds - time.time() # seconds left should be endTime - current time
         mins = int(sec/60)
