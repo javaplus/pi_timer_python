@@ -7,7 +7,7 @@ import display_7segment as display
 running_thread = None
 
 def stopCountDown():
-    if running_thread is not None
+    if running_thread is not None:
         logging.info(running_thread)
         global running_thread
         running_thread.do_run = False
