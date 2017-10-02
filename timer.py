@@ -1,8 +1,7 @@
-from threading import Thread
-import sys
 import logging
 import time
 import display_7segment as display
+import timer_thread
 
 running_thread = None
 
@@ -17,9 +16,12 @@ def stopCountDown():
 def countDown(minutes):
     logging.info("in Countdown:" + str(minutes))
     global running_thread
-    running_thread = Thread(target=timeKeeper, args=(minutes,))
-    running_thread.do_run = True
+    if running_thread is not None:
+        running_thread.stop()
+    running_thread = timer_thread.TimerThread(minutes=minutes)
     running_thread.start()
+
+
 
 def timeKeeper(minutes):    
     global running_thread
