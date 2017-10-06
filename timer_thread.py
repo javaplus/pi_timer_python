@@ -4,9 +4,9 @@ import display_7segment as display
 
 
 class TimerThread(Thread):
-    def __init__(self, minutes):
+    def __init__(self, timeToEnd):
         self.running = False
-        self.minutes = minutes
+        self.timeToEnd = timeToEnd
         super(TimerThread, self).__init__()
 
     def start(self):
@@ -14,19 +14,22 @@ class TimerThread(Thread):
         super(TimerThread, self).start()
 
     def run(self):
-        sec = self.minutes * 60
+        #based on current time find how long timer should run
+        currentTime = time.time()
+         #get what the endtime should be
+        secsToEnd = self.timeToEnd - currentTime
+        
+        sec = secsToEnd # initialize total current secs to total
+        minutes = int(sec/60)
         #build initial timer string:
-        timeStr = str(self.minutes) + ':' + str(sec % 60) 
+        timeStr = str(minutes) + ':' + str(sec % 60) 
         #logging.info("Initial time String:" + str(timeStr))
-        #get current system time
-        startTimeInSeconds = time.time()
-        #get what the endtime should be
-        endTimeInSeconds = startTimeInSeconds + sec
-        global is7SegmentDisplayAvailable
+       
+        #global is7SegmentDisplayAvailable
 
         while ((sec > 1) and (self.running is True)):
             
-            sec = endTimeInSeconds - time.time() # seconds left should be endTime - current time
+            sec = secsToEnd - time.time() # seconds left should be endTime - current time
             mins = int(sec/60)
             secondsForTimer = int(sec % 60)
             #timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
