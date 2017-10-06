@@ -18,22 +18,28 @@ class TimerThread(Thread):
         currentTime = time.time()
          #get what the endtime should be
         secsToEnd = self.timeToEnd - currentTime
+	#print("secsToEnd=" + str(secsToEnd))
         
+
         sec = secsToEnd # initialize total current secs to total
+	#print("Sec=" + str(sec))
         minutes = int(sec/60)
         #build initial timer string:
-        timeStr = str(minutes) + ':' + str(sec % 60) 
+        timeStr = str(minutes) + ':' + str(sec % 60)
+	#print("Time Str" + timeStr) 
         #logging.info("Initial time String:" + str(timeStr))
        
         #global is7SegmentDisplayAvailable
 
         while ((sec > 1) and (self.running is True)):
             
-            sec = secsToEnd - time.time() # seconds left should be endTime - current time
+            sec = self.timeToEnd - time.time() # seconds left should be endTime - current time
+	    #print("Secs=" + str(sec))
             mins = int(sec/60)
             secondsForTimer = int(sec % 60)
             #timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
             timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
+	    #print("timeStr=" + timeStr)
             
             #Write out to display
             display.writeToDisplay(timeStr)

@@ -23,7 +23,8 @@ def on_message(client, userdata, msg):
     timeToEnd = jsonRequest['timeToEnd']
     timer.stopCountDown()
     timeToEndLong = float(timeToEnd)
-    timer.countDown(math.floor(timeToEndLong))
+    timeToEndInt = int(math.floor(timeToEndLong))
+    timer.countDown(timeToEndInt)
 
 
 client = mqtt.Client()
