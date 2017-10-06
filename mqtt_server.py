@@ -22,7 +22,7 @@ def on_message(client, userdata, msg):
     jsonRequest = json.loads(msg.payload)
     timeToEnd = jsonRequest['timeToEnd']
     timer.stopCountDown()
-    timeToEndLong = long(timeToEnd)
+    timeToEndLong = float(timeToEnd)
     timer.countDown(math.floor(timeToEndLong))
 
 
