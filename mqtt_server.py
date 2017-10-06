@@ -3,6 +3,7 @@ import json
 import logging
 import sys
 import timer
+import math
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -21,7 +22,8 @@ def on_message(client, userdata, msg):
     jsonRequest = json.loads(msg.payload)
     timeToEnd = jsonRequest['timeToEnd']
     timer.stopCountDown()
-    timer.countDown(int(timeToEnd))
+    timeToEndLong = long(timeToEnd)
+    timer.countDown(math.floor(timeToEndLong))
 
 
 client = mqtt.Client()
