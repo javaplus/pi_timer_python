@@ -19,9 +19,9 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     jsonRequest = json.loads(msg.payload)
-    minutes = jsonRequest['minutes']
+    timeToEnd = jsonRequest['timeToEnd']
     timer.stopCountDown()
-    timer.countDown(int(minutes))
+    timer.countDown(int(timeToEnd))
 
 
 client = mqtt.Client()
