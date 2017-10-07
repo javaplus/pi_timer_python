@@ -1,5 +1,6 @@
 from threading import Thread
 import time
+import speecher
 try:
     import display_7segment as display
 except BaseException as ex:
@@ -8,9 +9,11 @@ except BaseException as ex:
 
 
 class TimerThread(Thread):
-    def __init__(self, timeToEnd):
+    def __init__(self, timeToEnd, speaktime, speakinterval ):
         self.running = False
         self.timeToEnd = timeToEnd
+        self.speaktime = speaktime
+        self.speakinterval = speakinterval
         super(TimerThread, self).__init__()
 
     def start(self):
@@ -37,7 +40,8 @@ class TimerThread(Thread):
 
         while ((sec > 1) and (self.running is True)):
             
-            sec = self.timeToEnd - time.time() # seconds left should be endTime - current time
+            currentTime = time.time()
+            sec = self.timeToEnd - currentTime # seconds left should be endTime - current time
 	        #print("Secs=" + str(sec))
             mins = int(sec/60)
             secondsForTimer = int(sec % 60)
@@ -45,8 +49,13 @@ class TimerThread(Thread):
             timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
 	        #print("timeStr=" + timeStr)
             
+            # see if we can speak:  
+            speecher.speak(self.speaktime, currentTime)
+            #TODO: speak for intervals
+
             #Write out to display
             display.writeToDisplay(timeStr)
+
             time.sleep(.25) # wait 1/4 a second before checking time again
 
     def stop(self):

@@ -6,3 +6,7 @@ def getPhraseToSay(listOfTimes,currentTime):
         if key == str(currentTime):
             return listOfTimes[key]
 
+def speak(listOfTimes, currentTime):
+    phrase = getPhraseToSay(listOfTimes, currentTime)
+    if phrase:
+        print("Speaking:" + phrase)
