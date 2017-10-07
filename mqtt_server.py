@@ -21,10 +21,12 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     jsonRequest = json.loads(msg.payload)
     timeToEnd = jsonRequest['timeToEnd']
+    speaktime = jsonRequest['speaktime']
+    speakinterval = jsonRequest['speakinterval']
     timer.stopCountDown()
-    timeToEndLong = float(timeToEnd)
+    timeToEndLong = float(timeToEnd)   
     timeToEndInt = int(math.floor(timeToEndLong))
-    timer.countDown(timeToEndInt)
+    timer.countDown(timeToEndInt, speaktime,speakinterval)
 
 
 client = mqtt.Client()

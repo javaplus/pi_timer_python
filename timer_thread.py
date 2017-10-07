@@ -1,6 +1,10 @@
 from threading import Thread
 import time
-import display_7segment as display
+try:
+    import display_7segment as display
+except BaseException as ex:
+    print(ex.message)
+    pass
 
 
 class TimerThread(Thread):
@@ -26,7 +30,7 @@ class TimerThread(Thread):
         minutes = int(sec/60)
         #build initial timer string:
         timeStr = str(minutes) + ':' + str(sec % 60)
-	#print("Time Str" + timeStr) 
+	    #print("Time Str" + timeStr) 
         #logging.info("Initial time String:" + str(timeStr))
        
         #global is7SegmentDisplayAvailable
@@ -34,12 +38,12 @@ class TimerThread(Thread):
         while ((sec > 1) and (self.running is True)):
             
             sec = self.timeToEnd - time.time() # seconds left should be endTime - current time
-	    #print("Secs=" + str(sec))
+	        #print("Secs=" + str(sec))
             mins = int(sec/60)
             secondsForTimer = int(sec % 60)
             #timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
             timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
-	    #print("timeStr=" + timeStr)
+	        #print("timeStr=" + timeStr)
             
             #Write out to display
             display.writeToDisplay(timeStr)
