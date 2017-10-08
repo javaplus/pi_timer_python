@@ -37,10 +37,11 @@ class TimerThread(Thread):
         #logging.info("Initial time String:" + str(timeStr))
        
         #global is7SegmentDisplayAvailable
-
+        for key in self.speaktime:
+          print("speakTime["+key +"]"+ self.speaktime[key])
         while ((sec > 1) and (self.running is True)):
             
-            currentTime = time.time()
+            currentTime = int(time.time())
             sec = self.timeToEnd - currentTime # seconds left should be endTime - current time
 	        #print("Secs=" + str(sec))
             mins = int(sec/60)

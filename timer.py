@@ -16,7 +16,8 @@ def countDown(timeToEnd,speaktime,speakinterval):
     global running_thread
     if running_thread is not None:
         running_thread.stop()
-    running_thread = timer_thread.TimerThread(timeToEnd=timeToEnd)
+    speakTimeMap = buildMapForSpeakTime(timeToEnd, speaktime)
+    running_thread = timer_thread.TimerThread(timeToEnd=timeToEnd,speaktime=speakTimeMap, speakinterval=speakinterval)
     running_thread.start()
 
 def buildMapForSpeakTime(timeToEnd, speaktimeList):
