@@ -14,6 +14,15 @@ class TimerTest(unittest.TestCase):
         expectedTimeOfAlarm = timeToEnd - 60
         self.assertEqual(expectedTimeOfAlarm, timeOfAlarm)
 
+    def testTimeInSecondsOfSpeechWithSeconds(self):
+        
+        timeToEnd = time.time() + 600 # 10 minute timer
+        timeInMinutesToAlarm = "1:10"
+        timeOfAlarm = timer.timeInSecondsOfSpeech(timeInMinutesToAlarm,timeToEnd)
+
+        expectedTimeOfAlarm = timeToEnd - 70
+        self.assertEqual(expectedTimeOfAlarm, timeOfAlarm)
+
     def testBuildMapForSpeakTimeTest(self):
         
         #set the time to end to be 5 minutes from now

@@ -35,7 +35,15 @@ def buildMapForSpeakTime(timeToEnd, speaktimeList):
 
     return speakMap
 def timeInSecondsOfSpeech(timeInMinutes, timeToEnd):
-    timeInSec = int(timeInMinutes) * 60
+    minutes = timeInMinutes
+    seconds = 0
+    if ":" in timeInMinutes:
+        splitTimeInMinutes = timeInMinutes.split(":")
+        minutes = splitTimeInMinutes[0]
+        seconds = splitTimeInMinutes[1]
+    
+    timeInSec = int(minutes) * 60
+    timeInSec+=int(seconds)
     return timeToEnd - timeInSec
 
 
