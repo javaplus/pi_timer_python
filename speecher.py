@@ -19,5 +19,9 @@ def speak(listOfTimes, currentTime):
         
 def worker(phrase):
 
-    os.system("espeak " + phrase["parms"] + " \"" + phrase["phrase"] + "\"") 
+    speakingPhrase = phrase["phrase"]
+    if "parms" in phrase:
+        os.system("espeak " + phrase["parms"] + " \"" + speakingPhrase + "\"") 
+    else:
+        os.system("espeak " + "\"" + speakingPhrase + "\"") 
     
