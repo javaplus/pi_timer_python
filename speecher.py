@@ -13,7 +13,7 @@ def speak(listOfTimes, currentTime):
     phrase = getPhraseToSay(listOfTimes, currentTime)
     if phrase:
         print("Speaking:" + phrase)
-	t = threading.Thread(target=worker, args=(phrase,))
+        t = threading.Thread(target=worker, args=(phrase,))
         t.start()
 	
         

@@ -10,11 +10,15 @@ segment.begin()
 def writeToDisplay(value):
     global segment
     global colonBool
-    #print "Writing to display:" + value
-    segment.print_number_str(value)
-    segment.set_colon(colonBool)
-    segment.write_display()
-    if(colonBool):
-        colonBool = False
-    else:
-        colonBool = True 
+    try:
+        #print "Writing to display:" + value
+        segment.print_number_str(value)
+        segment.set_colon(colonBool)
+        segment.write_display()
+        if(colonBool):
+            colonBool = False
+        else:
+            colonBool = True
+    except BaseException as ex:
+        print("Error Writing to display:" + str(ex.message))
+     

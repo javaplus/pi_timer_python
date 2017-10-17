@@ -25,20 +25,18 @@ class TimerThread(Thread):
         currentTime = time.time()
          #get what the endtime should be
         secsToEnd = self.timeToEnd - currentTime
-	#print("secsToEnd=" + str(secsToEnd))
+	    #print("secsToEnd=" + str(secsToEnd))
         
 
         sec = secsToEnd # initialize total current secs to total
-	#print("Sec=" + str(sec))
+	    #print("Sec=" + str(sec))
         minutes = int(sec/60)
         #build initial timer string:
         timeStr = str(minutes) + ':' + str(sec % 60)
 	    #print("Time Str" + timeStr) 
         #logging.info("Initial time String:" + str(timeStr))
        
-        #global is7SegmentDisplayAvailable
-        for key in self.speaktime:
-          print("speakTime["+key +"]"+ self.speaktime[key])
+        
         while ((sec > 1) and (self.running is True)):
             
             currentTime = int(time.time())
@@ -50,8 +48,13 @@ class TimerThread(Thread):
             timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
 	        #print("timeStr=" + timeStr)
             
-            # see if we can speak:  
-            speecher.speak(self.speaktime, currentTime)
+            try:
+                # see if we can speak:  
+                speecher.speak(self.speaktime, currentTime)
+                # Don't stop keeping time if we can't speak
+                # so catch the exception
+            except BaseException as ex:
+                print("Error speaking: " + ex.message)
             #TODO: speak for intervals
 
             #Write out to display
