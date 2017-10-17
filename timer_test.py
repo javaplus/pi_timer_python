@@ -29,7 +29,7 @@ class TimerTest(unittest.TestCase):
         currentTime = time.time()
         timeToEnd =  currentTime + (5 *60) 
 
-        inputData = '{"speaktime":[{"time":"5", "say":"GO"}, {"time":"1","say":"1 minute remaining"}]}'
+        inputData = '{"speaktime":[{"time":"5", "say":"GO", "parms":"-s 100"}, {"time":"1","say":"1 minute remaining", "parms":"-s 100"}]}'
         #inputData = '{"speaktime":"123"}'
         inputData = json.loads(inputData)
 
@@ -43,7 +43,31 @@ class TimerTest(unittest.TestCase):
         strTime = str(currentTime)
 
         # since our test data is a five minute timer, then it should have an entry for current time
-        self.assertEqual(speakTestMap[strTime], "GO")
+        self.assertEqual(speakTestMap[strTime]["phrase"], "GO")
+        #self.assertEqual(speakTestMap["1"], "1 minute remaining")
+    
+    def testBuildMapForSpeakTimeWithParamsTest(self):
+        
+        #set the time to end to be 5 minutes from now
+        currentTime = time.time()
+        timeToEnd =  currentTime + (5 *60) 
+
+        inputData = '{"speaktime":[{"time":"5", "say":"GO", "parms":"-s 100"}, {"time":"1","say":"1 minute remaining", "parms":"-s 100"}]}'
+        #inputData = '{"speaktime":"123"}'
+        inputData = json.loads(inputData)
+
+        speakTimeList = inputData["speaktime"]
+
+        #print("inputData:" + speakTimeList[0]["time"] )
+        
+        
+        speakTestMap = timer.buildMapForSpeakTime(timeToEnd, speakTimeList) 
+
+        strTime = str(currentTime)
+        speakDict = speakTestMap[strTime]
+
+        # since our test data is a five minute timer, then it should have an entry for current time
+        self.assertEqual(speakDict["phrase"], "GO")
         #self.assertEqual(speakTestMap["1"], "1 minute remaining")
 
 

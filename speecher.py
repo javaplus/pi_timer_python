@@ -12,12 +12,12 @@ def getPhraseToSay(listOfTimes,currentTime):
 def speak(listOfTimes, currentTime):
     phrase = getPhraseToSay(listOfTimes, currentTime)
     if phrase:
-        print("Speaking:" + phrase)
+        print("Speaking:" + phrase["phrase"])
         t = threading.Thread(target=worker, args=(phrase,))
         t.start()
 	
         
 def worker(phrase):
 
-    os.system("espeak " + "\"" + phrase + "\"") 
+    os.system("espeak " + phrase["parms"] + " \"" + phrase["phrase"] + "\"") 
     
