@@ -31,7 +31,9 @@ def buildMapForSpeakTime(timeToEnd, speaktimeList):
         secondsToTimer = timeInSecondsOfSpeech(timeOfItem, timeToEnd)
         secondsToTimerStr = str(secondsToTimer)
         print("timeToSpeak=" + secondsToTimerStr)
-        speakMap[secondsToTimerStr] = {"phrase" : speakItem["say"], "parms" : speakItem["parms"]}
+        speakMap[secondsToTimerStr] = {"phrase" : speakItem["say"]}
+        if "parms" in speakItem:
+            speakMap[secondsToTimerStr]["parms"] =  speakItem["parms"]
 
     return speakMap
 def timeInSecondsOfSpeech(timeInMinutes, timeToEnd):

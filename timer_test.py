@@ -29,7 +29,7 @@ class TimerTest(unittest.TestCase):
         currentTime = time.time()
         timeToEnd =  currentTime + (5 *60) 
 
-        inputData = '{"speaktime":[{"time":"5", "say":"GO", "parms":"-s 100"}, {"time":"1","say":"1 minute remaining", "parms":"-s 100"}]}'
+        inputData = '{"speaktime":[{"time":"5", "say":"GO"}, {"time":"1","say":"1 minute remaining"}]}'
         #inputData = '{"speaktime":"123"}'
         inputData = json.loads(inputData)
 
