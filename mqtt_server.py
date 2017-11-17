@@ -33,7 +33,7 @@ client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 client.connect("10.0.0.1", 1883, 60)
-#client.connect("192.168.1.124", 1883, 60)
+#client.connect("192.168.1.112", 1883, 60)
 
 
 # Blocking call that processes network traffic, dispatches callbacks and

@@ -19,9 +19,10 @@ def on_message(client, userdata, msg):
     speakingPhrase = phrase["say"]
     if "parms" in phrase:
         os.system("espeak " + phrase["parms"] + " \"" + speakingPhrase + "\"") 
+    elif "file" in phrase:
+        os.system("aplay " +  phrase["file"] )
     else:
-        os.system("espeak " + "\"" + speakingPhrase + "\"") 
-
+        os.system("espeak " + "\"" + speakingPhrase + "\"")
 
 client = mqtt.Client()
 client.on_connect = on_connect
