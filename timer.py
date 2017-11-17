@@ -34,6 +34,8 @@ def buildMapForSpeakTime(timeToEnd, speaktimeList):
         speakMap[secondsToTimerStr] = {"phrase" : speakItem["say"]}
         if "parms" in speakItem:
             speakMap[secondsToTimerStr]["parms"] =  speakItem["parms"]
+	if "file" in speakItem:
+            speakMap[secondsToTimerStr]["file"] =  speakItem["file"]
 
     return speakMap
 def timeInSecondsOfSpeech(timeInMinutes, timeToEnd):

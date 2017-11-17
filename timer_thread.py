@@ -37,7 +37,7 @@ class TimerThread(Thread):
         #logging.info("Initial time String:" + str(timeStr))
        
         
-        while ((sec > 1) and (self.running is True)):
+        while ((sec > -5) and (self.running is True)):
             
             currentTime = int(time.time())
             sec = self.timeToEnd - currentTime # seconds left should be endTime - current time
@@ -45,7 +45,10 @@ class TimerThread(Thread):
             mins = int(sec/60)
             secondsForTimer = int(sec % 60)
             #timeStr = str(int(sec/60)) + ':' + str(sec % 60) 
-            timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
+	    if sec < 1:
+		timeStr = '0000'
+	    else:
+            	timeStr = '{:02d}{:02d}'.format(mins, secondsForTimer)
 	        #print("timeStr=" + timeStr)
             
             try:
