@@ -56,10 +56,13 @@ class TimerThread(Thread):
             except BaseException as ex:
                 print("Error speaking: " + ex.message)
             #TODO: speak for intervals
-
-            #Write out to display
-            display.writeToDisplay(timeStr)
-
+	
+	    try:
+            	#Write out to display
+            	display.writeToDisplay(timeStr)
+	    except BaseException as ex:
+		pass
+		
             time.sleep(.25) # wait 1/4 a second before checking time again
 
     def stop(self):
