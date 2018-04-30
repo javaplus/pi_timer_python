@@ -4,6 +4,7 @@ import logging
 import sys
 import timer
 import math
+import os
 
 
 serverIP = os.environ['pi_server_ip']
