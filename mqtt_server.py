@@ -5,6 +5,9 @@ import sys
 import timer
 import math
 
+
+serverIP = os.environ['pi_server_ip']
+
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -32,7 +35,7 @@ def on_message(client, userdata, msg):
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-client.connect("10.0.0.1", 1883, 60)
+client.connect(serverIP, 1883, 60)
 #client.connect("192.168.1.112", 1883, 60)
 
 
