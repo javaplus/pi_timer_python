@@ -33,8 +33,14 @@ Uses the environment variable "pi_server_ip" to set the server ip where the topi
 
 ## timer.py
 
-The core logic for the speaking and timer functionality.  It takes the time to end and the list of speak times and parses them to calculate the precise times that the timer should be and when phrases should be spoken.
+The core logic for the speaking and timer functionality.  It takes the time to end and the list of speak times and parses them to calculate the precise times that the timer should be and when phrases should be spoken.  It then spawns a thread to process the current timer message.  This way it can continue to listen in case another timer message comes in.  In the case, that another timer request comes in while one is started, this module will kill the currently running thread before starting the new timer thread.
 
 NOTE: The speak interval functionality is not fully implemented yet.
+
+
+## timer_thread.py
+
+The module that runs to calculate what should be written out the display based on the current system time and the endtime of the timer.  Also, issues the speaking commands based on the speaking map that is passed to it.
+
 
 
