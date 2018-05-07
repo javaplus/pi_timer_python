@@ -4,6 +4,8 @@ Code for the Distrubuted timer boxes that make up the "Game Commander" system.
 
 This code is used to control Adafruit's 7 segment display with I2C backpack as well as control speaking commands.
 
+The main functionality relies on the server.py module from [timer_controller](https://github.com/javaplus/timer_controller) repo to write messages to a timer queue that the mqtt_server.py module is listening to.
+
 ## display_7segment.py
 
 This module is the module that imports the Adafruit_LED_Backpack module to write out to the 7 segment display.
