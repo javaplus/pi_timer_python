@@ -42,5 +42,7 @@ NOTE: The speak interval functionality is not fully implemented yet.
 
 The module that runs to calculate what should be written out the display based on the current system time and the endtime of the timer.  Also, issues the speaking commands based on the speaking map that is passed to it.
 
+NOTE: speakinterval is not used at this time.  It is a place holder for a possible future enhancement that allows a parameterized message to be spoken at specific intervals. The idea is that this allows you to specify one entry for a message that is repeated multiple times during the countdown of the timer.  For Example: If you wanted the timer to speak "15 mintues remaining", "10 minutes remaining", and "5 minutes remaining", instead of having 3 entries in the speaktime collection, you would pass one entry to to speakinterval that was something like: "%min% minutes remaining".  That's the idea anyway.   
+
 
 
