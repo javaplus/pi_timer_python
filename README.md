@@ -21,7 +21,7 @@ Uses the environment variable "pi_server_ip" to set the server ip.
 
 ## server.py
 
-Due to the fact I'm  adding documentation months after development, combined with the fact I left a few junk programs around... I'm not entirely sure the purpose of this module. I believe this was a simple REST API to test the individual boxes timer funtions directly without have a server present or using MQTT. Early on in development this was used to test the timer functionality by sending a number of minutes to the timer module.  I'm pretty certain it's not used at all during runtime.
+Due to the fact I'm  adding documentation months after development, combined with the fact I left a few junk programs around... I'm not entirely sure the purpose of this module. I believe this was a simple REST API to test the individual boxes timer funtions directly without have a server present or using MQTT. Early on in development this was used to test the timer functionality by sending a number of minutes to the timer module just to test the display logic.  I'm pretty certain it's not used at all during runtime.
 
 ## speech_server.py
 
